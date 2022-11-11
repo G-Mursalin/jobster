@@ -2,6 +2,9 @@
 import React from "react";
 // React Router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// React Tostify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Pages
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
@@ -18,6 +21,7 @@ const App = () => {
           <Route path="*" element={<Error />}></Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer position="top-center" autoClose={1500} />
     </React.Fragment>
   );
 };
