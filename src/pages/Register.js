@@ -1,7 +1,80 @@
-import React from "react";
+// React
+import React, { useState, useEffect } from "react";
+// CSS
+import Wrapper from "./../assets/wrappers/RegisterPage";
+// Components
+import Logo from "./../components/Logo";
+import FormRow from "../components/FormRow";
+
+const initialState = {
+  name: "",
+  email: "",
+  password: "",
+  isMember: true,
+};
 
 const Register = () => {
-  return <div>Register</div>;
+  const [values, setValues] = useState(initialState);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setValues({ ...values, [name]: value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, password, isMember } = values;
+    if (!email || !password || (!isMember && !name)) {
+      return;
+    }
+
+    setValues(initialState);
+  };
+
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember });
+  };
+
+  return (
+    <Wrapper className="full-page">
+      <form className="form" onSubmit={onSubmit}>
+        <Logo />
+        <h3>{values.isMember ? "login" : "register"}</h3>
+
+        {!values.isMember && (
+          <FormRow
+            type="text"
+            name="name"
+            value={values.name}
+            handleChange={handleChange}
+          />
+        )}
+        <FormRow
+          type="email"
+          name="email"
+          value={values.email}
+          handleChange={handleChange}
+        />
+        <FormRow
+          type="password"
+          name="password"
+          value={values.password}
+          handleChange={handleChange}
+        />
+
+        <button type="submit" className="btn btn-block">
+          submit
+        </button>
+        <p>
+          {values.isMember ? "Not a member yet?" : "Already a member?"}
+          <button className="member-btn" type="button" onClick={toggleMember}>
+            {values.isMember ? "Register" : "Login"}
+          </button>
+        </p>
+      </form>
+    </Wrapper>
+  );
 };
 
 export default Register;
