@@ -21,7 +21,7 @@ const App = () => {
           <Route path="*" element={<Error />}></Route>
         </Routes>
       </BrowserRouter>
-      <ToastContainer position="top-center" autoClose={1500} />
+      <ToastContainer position="top-center" />
     </React.Fragment>
   );
 };
