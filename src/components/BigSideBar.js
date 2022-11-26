@@ -4,6 +4,7 @@ import React from "react";
 import Wrapper from "./../assets/wrappers/BigSidebar";
 // React Redux
 import { useSelector } from "react-redux";
+import { toggleSidebar } from "../features/userSlice";
 //components
 import NavLinks from "./NavLinks";
 import Logo from "../components/Logo";

@@ -4,10 +4,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 // React Redux
 import { useDispatch } from "react-redux";
+import { toggleSidebar } from "../features/userSlice";
 // Utils
 import links from "../utils/links";
 
-const NavLinks = ({ toggleSidebar }) => {
+const NavLinks = ({ isToggleSidebar }) => {
   const dispatch = useDispatch();
   return (
     <div className="nav-links">
@@ -15,7 +16,7 @@ const NavLinks = ({ toggleSidebar }) => {
         <NavLink
           to={val.path}
           key={val.id}
-          onClick={() => dispatch(toggleSidebar())}
+          onClick={isToggleSidebar ? () => dispatch(toggleSidebar()) : ""}
           className={({ isActive }) =>
             isActive ? "nav-link active" : "nav-link"
           }
