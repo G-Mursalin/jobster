@@ -7,6 +7,8 @@ import customFetch from "../utils/axious";
 import { getUserFromLocalStorage } from "./../utils/localStorage";
 // UserSlice
 import { logoutUser } from "./userSlice";
+// JobSlice
+import { showLoading, hideLoading, getAllJobs } from "./allJobsSlice";
 
 export const createAjob = createAsyncThunk(
   "job/createAjob",
