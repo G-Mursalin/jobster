@@ -4,8 +4,13 @@ import React from "react";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 // React Redux
 import { useSelector, useDispatch } from "react-redux";
-import { handleChange, clearValues } from "../../features/jobSlice";
-import { createAjob } from "../../features/jobSlice";
+import {
+  handleChange,
+  clearValues,
+  createAjob,
+  updateJob,
+} from "../../features/jobSlice";
+
 // React Tostify
 import { toast } from "react-toastify";
 // Components
@@ -34,7 +39,22 @@ const AddJob = () => {
       toast.error("Please Fill Out All Fields");
       return;
     }
-    dispatch(createAjob({ position, company, jobLocation, status, jobType }));
+    if (isEditing) {
+      dispatch(
+        updateJob({
+          jobId: editJobId,
+          job: {
+            position,
+            company,
+            jobLocation,
+            jobType,
+            status,
+          },
+        })
+      );
+    } else {
+      dispatch(createAjob({ position, company, jobLocation, status, jobType }));
+    }
   };
   const handleJobInput = (e) => {
     const name = e.target.name;

@@ -9,6 +9,7 @@ import Wrapper from "../assets/wrappers/Job";
 // React Redux
 import { useDispatch } from "react-redux";
 import JobInfo from "./JobInfo";
+import { deleteJob, setEditJob } from "../features/jobSlice";
 
 const Job = (props) => {
   const { _id, position, company, jobLocation, jobType, createAt, status } =
@@ -40,9 +41,18 @@ const Job = (props) => {
             <Link
               to="/add-job"
               className="btn edit-btn"
-              onClick={() => {
-                console.log("edit job");
-              }}
+              onClick={() =>
+                dispatch(
+                  setEditJob({
+                    editJobId: _id,
+                    position,
+                    company,
+                    jobLocation,
+                    jobType,
+                    status,
+                  })
+                )
+              }
             >
               Edit
             </Link>
@@ -50,7 +60,7 @@ const Job = (props) => {
               type="button"
               className="btn delete-btn"
               onClick={() => {
-                console.log("delete  job");
+                dispatch(deleteJob(_id));
               }}
             >
               Delete
