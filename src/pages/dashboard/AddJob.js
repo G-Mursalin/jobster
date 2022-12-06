@@ -9,7 +9,7 @@ import {
   clearValues,
   createAjob,
   updateJob,
-} from "../../features/jobSlice";
+} from "../../features/job/jobSlice";
 
 // React Tostify
 import { toast } from "react-toastify";

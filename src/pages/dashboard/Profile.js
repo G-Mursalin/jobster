@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 // React Redux
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../../features/userSlice";
+import { updateUser } from "../../features/user/userSlice";
 // CSS
 import Wrapper from "./../../assets/wrappers/DashboardFormPage";
 // React Tostify

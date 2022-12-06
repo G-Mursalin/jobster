@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Wrapper from "../assets/wrappers/JobsContainer";
 // React Redux
 import { useSelector, useDispatch } from "react-redux";
-import { getAllJobs } from "../features/allJobsSlice";
+import { getAllJobs } from "../features/alljobs/allJobsSlice";
 // Components
 import Job from "./Job";
 import Loading from "./Loading";

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Wrapper from "./../assets/wrappers/Navbar";
 // React Redux
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar, logoutUser } from "../features/userSlice";
+import { toggleSidebar, logoutUser } from "../features/user/userSlice";
 // React Icons
 import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 // Components

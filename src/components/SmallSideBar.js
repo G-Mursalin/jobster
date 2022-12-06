@@ -6,7 +6,7 @@ import Wrapper from "./../assets/wrappers/SmallSidebar";
 import { FaTimes } from "react-icons/fa";
 // React Redux
 import { useSelector, useDispatch } from "react-redux";
-import { toggleSidebar } from "../features/userSlice";
+import { toggleSidebar } from "../features/user/userSlice";
 // React Router
 import { NavLink } from "react-router-dom";
 // Utils

@@ -2,13 +2,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // React Tostify
 import { toast } from "react-toastify";
-// Utils
-import customFetch from "../utils/axious";
+
+// User Thunk
+import {
+  registerUserThunk,
+  loginUserThunk,
+  updateAUserThunk,
+} from "./userThunk";
+// utils
 import {
   getUserFromLocalStorage,
   addUserToLocalStorage,
   removeUserFromLocalStorage,
-} from "./../utils/localStorage";
+} from "../../utils/localStorage";
 
 const initialState = {
   isLoading: false,
@@ -18,47 +24,10 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
   "user/registerUser",
-  async (user, thunkAPI) => {
-    try {
-      const response = await customFetch.post("/api/v1/users/signup", user);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.message);
-    }
-  }
+  registerUserThunk
 );
-
-export const loginUser = createAsyncThunk(
-  "user/loginUser",
-  async (user, thunkAPI) => {
-    try {
-      const response = await customFetch.post("/api/v1/users/login", user);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.message);
-    }
-  }
-);
-
-export const updateUser = createAsyncThunk(
-  "user/updateUser",
-  async (user, thunkAPI) => {
-    try {
-      const response = await customFetch.post("/api/v1/users/update-me", user, {
-        headers: {
-          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      if (error.response.status === 401) {
-        thunkAPI.dispatch(logoutUser());
-        return thunkAPI.rejectWithValue("Unauthorized. Logging Out...");
-      }
-      return thunkAPI.rejectWithValue(error.response.data.message);
-    }
-  }
-);
+export const loginUser = createAsyncThunk("user/loginUser", loginUserThunk);
+export const updateUser = createAsyncThunk("user/updateUser", updateAUserThunk);
 
 const userSlice = createSlice({
   name: "user",

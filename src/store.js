@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import jobSliceReducer from "./features/jobSlice";
-import userSliceReducer from "./features/userSlice";
-import allJobsSliceReducer from "./features/allJobsSlice";
+import jobSliceReducer from "./features/job/jobSlice";
+import userSliceReducer from "./features/user/userSlice";
+import allJobsSliceReducer from "./features/alljobs/allJobsSlice";
 
 export const store = configureStore({
   reducer: {

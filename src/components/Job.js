@@ -9,7 +9,7 @@ import Wrapper from "../assets/wrappers/Job";
 // React Redux
 import { useDispatch } from "react-redux";
 import JobInfo from "./JobInfo";
-import { deleteJob, setEditJob } from "../features/jobSlice";
+import { deleteJob, setEditJob } from "../features/job/jobSlice";
 
 const Job = (props) => {
   const { _id, position, company, jobLocation, jobType, createAt, status } =
@@ -31,7 +31,11 @@ const Job = (props) => {
           <JobInfo icon={<FaLocationArrow />} text={jobLocation} />
           <JobInfo
             icon={<FaCalendarAlt />}
-            text={new Date(createAt).toLocaleDateString("en-GB")}
+            text={new Date(createAt).toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
           />
           <JobInfo icon={<FaBriefcase />} text={jobType} />
           <div className={`status ${status}`}>{status}</div>

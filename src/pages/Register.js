@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 // React redux-toolkit
 import { useSelector, useDispatch } from "react-redux";
-import { loginUser, registerUser } from "../features/userSlice";
+import { loginUser, registerUser } from "../features/user/userSlice";
 // Components
 import Logo from "./../components/Logo";
 import FormRow from "../components/FormRow";
