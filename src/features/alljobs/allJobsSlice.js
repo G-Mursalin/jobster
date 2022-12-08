@@ -16,7 +16,7 @@ const initialState = {
   totalJobs: 0,
   numOfPages: 1,
   page: 1,
-  stats: {},
+  stats: [],
   monthlyApplications: [],
   ...initialFiltersState,
 };
@@ -35,7 +35,41 @@ export const getAllJobs = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg);
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const showStats = createAsyncThunk(
+  "allJobs/showStats",
+  async (_, thunkAPI) => {
+    try {
+      const resp = await customFetch.get("/api/v1/jobs/get-stats", {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      });
+
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const showMonthlyApplications = createAsyncThunk(
+  "allJobs/showMonthlyApplications",
+  async (_, thunkAPI) => {
+    try {
+      const resp = await customFetch.get("/api/v1/jobs/get-monthly-stats", {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      });
+
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -62,6 +96,30 @@ const allJobsSlice = createSlice({
         state.jobs = jobs;
       })
       .addCase(getAllJobs.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        toast.error(payload);
+      })
+      .addCase(showStats.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(showStats.fulfilled, (state, { payload }) => {
+        const { stats } = payload.data;
+        state.isLoading = false;
+        state.stats = stats;
+      })
+      .addCase(showStats.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        toast.error(payload);
+      })
+      .addCase(showMonthlyApplications.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(showMonthlyApplications.fulfilled, (state, { payload }) => {
+        const { stats } = payload.data;
+        state.isLoading = false;
+        state.monthlyApplications = stats;
+      })
+      .addCase(showMonthlyApplications.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
       });
