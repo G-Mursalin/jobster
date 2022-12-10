@@ -14,6 +14,7 @@ import {
 } from "recharts";
 
 const BarChartComponent = ({ data }) => {
+  console.log(data);
   return (
     <ResponsiveContainer width="100%" height={300}>
       <BarChart
@@ -23,7 +24,7 @@ const BarChartComponent = ({ data }) => {
         }}
       >
         <CartesianGrid strokeDasharray="10 10" />
-        <XAxis dataKey="month" />
+        <XAxis dataKey="monthYear" />
         <YAxis allowDecimals={false} />
         <Tooltip />
         <Legend />

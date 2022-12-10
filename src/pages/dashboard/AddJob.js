@@ -54,6 +54,7 @@ const AddJob = () => {
       );
     } else {
       dispatch(createAjob({ position, company, jobLocation, status, jobType }));
+      dispatch(clearValues());
     }
   };
   const handleJobInput = (e) => {
