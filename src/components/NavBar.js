@@ -5,6 +5,8 @@ import Wrapper from "./../assets/wrappers/Navbar";
 // React Redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar, logoutUser } from "../features/user/userSlice";
+import { clearFilters } from "../features/alljobs/allJobsSlice";
+import { clearValues } from "../features/job/jobSlice";
 // React Icons
 import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 // Components
@@ -43,7 +45,11 @@ const NavBar = () => {
             <button
               type="button"
               className="dropdown-btn"
-              onClick={() => dispatch(logoutUser("Logging out..."))}
+              onClick={() => {
+                dispatch(logoutUser("Logging out..."));
+                dispatch(clearFilters());
+                dispatch(clearValues());
+              }}
             >
               logout
             </button>
