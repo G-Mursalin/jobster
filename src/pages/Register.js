@@ -87,6 +87,15 @@ const Register = () => {
           value={values.password}
           handleChange={handleChange}
         />
+
+        {values.isMember ? (
+          <>
+            <p>Login Email: test@gmail.com</p>
+            <p>Login Password: 123456789</p>
+          </>
+        ) : (
+          " "
+        )}
         <button type="submit" className="btn btn-block" disabled={isLoading}>
           {values.isMember ? "login" : "submit"}
         </button>
