@@ -1,8 +1,10 @@
 import axios from "axios";
-import { getUserFromLocalStorage } from "./localStorage";
+
+// http://localhost:3001/
+// https://jobster-z8pv.onrender.com
 
 const customFetch = axios.create({
-  baseURL: "https://jobster-z8pv.onrender.com",
+  baseURL: "http://localhost:3001",
 });
 
 export default customFetch;

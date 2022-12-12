@@ -33,7 +33,6 @@ export const deleteJobThunk = async (jobId, thunkAPI) => {
       },
     });
     thunkAPI.dispatch(getAllJobs());
-    console.log(response);
     return response.data;
   } catch (error) {
     thunkAPI.dispatch(hideLoading());

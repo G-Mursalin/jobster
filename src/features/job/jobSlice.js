@@ -2,8 +2,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // React Tostify
 import { toast } from "react-toastify";
-// Utils
-import customFetch from "../../utils/axious";
 // Job Thunks
 import { createAJobThunk, deleteJobThunk, updateJobThunk } from "./jobThunk";
 

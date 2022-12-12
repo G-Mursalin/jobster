@@ -116,14 +116,25 @@ const AddJob = () => {
             >
               clear
             </button>
-            <button
-              type="submit"
-              className="btn btn-block submit-btn"
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              {isLoading ? "Sending..." : "submit"}
-            </button>
+            {isEditing ? (
+              <button
+                type="submit"
+                className="btn btn-block submit-btn"
+                onClick={handleSubmit}
+                disabled={isLoading}
+              >
+                {isLoading ? "Updating..." : "update"}
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-block submit-btn"
+                onClick={handleSubmit}
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending..." : "submit"}
+              </button>
+            )}
           </div>
         </div>
       </form>

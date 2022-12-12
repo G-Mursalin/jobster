@@ -17,9 +17,10 @@ const SearchContainer = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
-    if (isLoading) return;
     dispatch(handleChange({ name: e.target.name, value: e.target.value }));
-    dispatch(getAllJobs());
+    setTimeout(() => {
+      dispatch(getAllJobs());
+    }, 1300);
   };
 
   const handleSubmit = (e) => {
